@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'todo/pure-min.css' %}" />
+    <style type="text/css">
+    .todo-table {
+        margin: 0 auto;
+    }
+    .center {
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <form action="add" method="post">
+            <input type="text" name="task" placeholder="输入 todo">
+            <button class="pure-button pure-button-primary">Add</button>
+        </form>
+    </div>
+
+    <table class="todo-table pure-table pure-table-horizontal pure-table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Task</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for todo in todo_list %}
+            <tr>
+                <td>{{ todo.id }}</td>
+                <td>{{ todo.task }}</td>
+{#                <td><a href="{{ url_for('.edit', id=todo.id) }}">修改</a></td>#}
+{#                <td><a href="{% url 'todo:delete' todo.id %}">删除</a></td>#}
+            </tr>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
