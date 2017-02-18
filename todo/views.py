@@ -10,18 +10,24 @@ from .models import Todo
 
 def index(request):
     todo_list = Todo.objects.all()
-    print('debug', todo_list)
-    # context = {
-    #     'todo_list': todo_list,
-    # }
-    return render(request, 'todo/index.html', todo_list)
+    context = {
+        'todo_list': todo_list,
+    }
+    return render(request, 'todo/index.html', context)
 
 
 def add(request):
     if request.method == 'POST':
         task = request.POST.get('task', '')
         Todo.objects.create(task=task)
-    return HttpResponseRedirect('index')
+    return HttpResponseRedirect('/todo/')
+
+
+def delete(request, todo_id):
+    t = get_object_or_404(Todo, pk=todo_id)
+    t.delete()
+    return HttpResponseRedirect('/todo/')
+
 
 
 # def detail(request, question_id):
