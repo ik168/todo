@@ -29,14 +29,22 @@ def delete(request, todo_id):
     return HttpResponseRedirect('/todo/')
 
 
+def edit(request, todo_id):
+    t = get_object_or_404(Todo, pk=todo_id)
+    context = {
+        't': t,
+    }
+    return render(request, 'todo/edit.html', context)
 
-# def detail(request, question_id):
-#     # return HttpResponse("You'are looking at question {}".format(question_id))
-#     # try:
-#     #     question = Question.objects.get(pk=question_id)
-#     # except Question.DoesNotExist:
-#     #     raise Http404('Question does not exist')
-#     question = get_object_or_404(Question, pk=question_id)
-#     return render(request, 'polls/detail.html', {'question': question})
+
+def update(request, todo_id):
+    t = get_object_or_404(Todo, pk=todo_id)
+    task = request.POST.get('task', '')
+    # print('debug', task, t.task)
+    t.task = task
+    t.save()
+    return HttpResponseRedirect('/todo/')
+
+
 
 

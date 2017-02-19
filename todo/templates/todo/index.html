@@ -36,7 +36,7 @@
             <tr>
                 <td>{{ todo.id }}</td>
                 <td>{{ todo.task }}</td>
-{#                <td><a href="{{ url_for('.edit', id=todo.id) }}">修改</a></td>#}
+                <td><a href="{% url 'todo:edit' todo.id %}">修改</a></td>
                 <td><a href="{% url 'todo:delete' todo.id %}">删除</a></td>
             </tr>
             </tr>

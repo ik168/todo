@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>polls</title>
+</head>
+<body>
+    <h1>{{ t.task }}</h1>
+
+
+    <form action="{% url 'todo:update' t.id %}" method="post">
+        <input type="text" name="task"  value="{{ t.task }}" >
+    <button>更新</button>
+    </form>
+</body>
+</html>
